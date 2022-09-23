@@ -96,13 +96,13 @@ template <typename Float_, typename Spectrum_> struct RenderAliases {
 
     using MeshAttribute          = mitsuba::MeshAttribute<FloatU, SpectrumU>;
 
-    using ObjectPtr              = dr::replace_scalar_t<Float, const Object *>;
     using BSDFPtr                = dr::replace_scalar_t<Float, const BSDF *>;
-    using MediumPtr              = dr::replace_scalar_t<Float, const Medium *>;
-    using PhaseFunctionPtr       = dr::replace_scalar_t<Float, const PhaseFunction *>;
-    using ShapePtr               = dr::replace_scalar_t<Float, const Shape *>;
-    using SensorPtr              = dr::replace_scalar_t<Float, const Sensor *>;
     using EmitterPtr             = dr::replace_scalar_t<Float, const Emitter *>;
+    using MediumPtr              = dr::replace_scalar_t<Float, const Medium *>;
+    using ObjectPtr              = dr::replace_scalar_t<Float, const Object *>;
+    using PhaseFunctionPtr       = dr::replace_scalar_t<Float, const PhaseFunction *>;
+    using SensorPtr              = dr::replace_scalar_t<Float, const Sensor *>;
+    using ShapePtr               = dr::replace_scalar_t<Float, const Shape *>;
 };
 
 #define MMI_USING_MEMBERS_MACRO2(x) \
@@ -178,11 +178,11 @@ template <typename Float_, typename Spectrum_> struct RenderAliases {
     using ReconstructionFilter   = typename RenderAliases::ReconstructionFilter;                   \
     using Texture                = typename RenderAliases::Texture;                                \
     using Volume                 = typename RenderAliases::Volume;                                 \
-    using ObjectPtr              = typename RenderAliases::ObjectPtr;                              \
     using BSDFPtr                = typename RenderAliases::BSDFPtr;                                \
-    using MediumPtr              = typename RenderAliases::MediumPtr;                              \
-    using ShapePtr               = typename RenderAliases::ShapePtr;                               \
     using EmitterPtr             = typename RenderAliases::EmitterPtr;                             \
-    using SensorPtr              = typename RenderAliases::SensorPtr;
+    using MediumPtr              = typename RenderAliases::MediumPtr;                              \
+    using ObjectPtr              = typename RenderAliases::ObjectPtr;                              \
+    using SensorPtr              = typename RenderAliases::SensorPtr;                              \
+    using ShapePtr               = typename RenderAliases::ShapePtr;
 
 NAMESPACE_END(mitsuba)
