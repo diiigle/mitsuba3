@@ -6,6 +6,7 @@
 #include <mitsuba/render/interaction.h>
 #include <mitsuba/render/shape.h>
 #include <mitsuba/render/texture.h>
+#include <drjit/vcall.h>
 
 NAMESPACE_BEGIN(mitsuba)
 
@@ -91,6 +92,8 @@ public:
         return oss.str();
     }
 
+    DRJIT_VCALL_REGISTER(Float, mitsuba::Volume)
+
     MI_DECLARE_CLASS()
 protected:
     Volume(const Properties &props);
@@ -120,3 +123,24 @@ protected:
 
 MI_EXTERN_CLASS(Volume)
 NAMESPACE_END(mitsuba)
+
+// -----------------------------------------------------------------------
+//! @{ \name Dr.Jit support for packets of Volume pointers
+// -----------------------------------------------------------------------
+
+DRJIT_VCALL_TEMPLATE_BEGIN(mitsuba::Volume)
+    DRJIT_VCALL_METHOD(eval)
+    DRJIT_VCALL_METHOD(eval_1)
+    DRJIT_VCALL_METHOD(eval_3)
+    DRJIT_VCALL_METHOD(eval_6)
+    DRJIT_VCALL_METHOD(eval_n)
+    DRJIT_VCALL_METHOD(eval_gradient)
+    DRJIT_VCALL_GETTER(max, typename Class::ScalarFloat)
+    DRJIT_VCALL_METHOD(max_per_channel)
+    DRJIT_VCALL_GETTER(bbox, typename Class::ScalarBoundingBox3f)
+    DRJIT_VCALL_GETTER(resolution, typename Class::ScalarVector3i)
+    DRJIT_VCALL_GETTER(channel_count, uint32_t)
+DRJIT_VCALL_TEMPLATE_END(mitsuba::Volume)
+
+//! @}
+// -----------------------------------------------------------------------

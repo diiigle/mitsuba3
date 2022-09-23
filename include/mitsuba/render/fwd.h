@@ -103,6 +103,7 @@ template <typename Float_, typename Spectrum_> struct RenderAliases {
     using PhaseFunctionPtr       = dr::replace_scalar_t<Float, const PhaseFunction *>;
     using SensorPtr              = dr::replace_scalar_t<Float, const Sensor *>;
     using ShapePtr               = dr::replace_scalar_t<Float, const Shape *>;
+    using VolumePtr              = dr::replace_scalar_t<Float, const Volume *>;
 };
 
 #define MMI_USING_MEMBERS_MACRO2(x) \
@@ -183,6 +184,7 @@ template <typename Float_, typename Spectrum_> struct RenderAliases {
     using MediumPtr              = typename RenderAliases::MediumPtr;                              \
     using ObjectPtr              = typename RenderAliases::ObjectPtr;                              \
     using SensorPtr              = typename RenderAliases::SensorPtr;                              \
-    using ShapePtr               = typename RenderAliases::ShapePtr;
+    using ShapePtr               = typename RenderAliases::ShapePtr;                               \
+    using VolumePtr              = typename RenderAliases::VolumePtr;
 
 NAMESPACE_END(mitsuba)
